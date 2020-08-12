@@ -5,7 +5,7 @@ services:
     container_name: wg-gen-web
     restart: unless-stopped
     expose:
-      - "8000/tcp"
+      - "8080/tcp"
     environment:
       - WG_CONF_DIR=/data
       - WG_INTERFACE_NAME=wg0.conf

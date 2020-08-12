@@ -1,0 +1,42 @@
+server {
+        listen 80;
+        listen [::]:80;
+        server_name vpn.domain.com;
+        return      301 https://example.com$request_uri;
+}
+
+server {
+        listen 443;
+        listen [::]:443;
+
+        server_name vpn.domain.com;
+
+        ssl on;
+        ssl_certificate /path/to/domain.com.bundle.crt;
+        ssl_certificate_key /path/to/domain.com.key;
+
+        location / {
+                proxy_set_header Host $host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-Proto https;
+                proxy_pass http://localhost:8080;
+        }
+}
+
+server {
+        listen 443 http2;
+        listen [::]:443 http2;
+
+        server_name sso.domain.com;
+
+        ssl on;
+        ssl_certificate /path/to/domain.com.bundle.crt;
+        ssl_certificate_key /path/to/domain.com.key;
+
+                location / {
+                proxy_set_header Host $host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-Proto https;
+                proxy_pass http://localhost:8000;
+        }
+}

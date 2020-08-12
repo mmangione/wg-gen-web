@@ -15,7 +15,10 @@ ui/node_modules
 /dist
 
 # Docker Compse File
-docker-compose.yml
+docker-compose-local.yml
+
+# Nginx & Other Conf
+*.conf
 
 # local env files
 ui/.env.local
