@@ -1,10 +1,11 @@
-version: '3.6'
-  wg-gen-web-demo:
+version: '3.5'
+services:
+  wg-gen-web:
     image: vx3r/wg-gen-web:latest
-    container_name: wg-gen-web-demo
+    container_name: wg-gen-web
     restart: unless-stopped
     expose:
-      - "8080/tcp"
+      - "8000/tcp"
     environment:
       - WG_CONF_DIR=/data
       - WG_INTERFACE_NAME=wg0.conf
